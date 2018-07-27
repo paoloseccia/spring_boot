@@ -15,6 +15,16 @@ public class ParentsController {
     private final static Logger LOGGER = LoggerFactory.getLogger(ParentsController.class);
 
 
+    @RequestMapping(method = RequestMethod.POST, value = "/parents")
+    @ResponseBody
+    public Person create(final Parent parent) {
+
+        LOGGER.info("Saving parent  {}", parent);
+
+        return null;
+    }
+
+
     @RequestMapping(method = RequestMethod.GET, value = "/parents/{id}")
     @ResponseBody
     public Person read(@PathVariable("id") long id) {

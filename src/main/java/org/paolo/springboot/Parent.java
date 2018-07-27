@@ -47,4 +47,19 @@ public class Parent extends Person {
         return children;
     }
 
+    @Override
+    public String toString() {
+        return "Parent{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", secondName='" + getSecondName() + '\'' +
+                ", firstName='" + getFirstName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", emailAddress='" + getEmailAddress() + '\'' +
+                ", dateOfBirth=" + getDateOfBirth() +
+                ", gender='" + getGender() + '\'' +
+                ", children=" + children +
+                '}';
+
+    }
 }
