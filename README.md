@@ -1,6 +1,6 @@
 # Spring Boot Application
 
-List of API exposed for parents
+List of API exposed for [parents](https://github.com/paoloseccia/spring_boot/blob/master/src/main/java/org/paolo/springboot/controller/ParentsController.java)
 
 
 ```sh
@@ -10,7 +10,7 @@ List of API exposed for parents
  DELETE /parents/{id} - removes an existing parent by id
 ```
 
-List of API exposed for children
+List of API exposed for [children](https://github.com/paoloseccia/spring_boot/blob/master/src/main/java/org/paolo/springboot/controller/ChildrenController.java)
 
 
 ```sh
