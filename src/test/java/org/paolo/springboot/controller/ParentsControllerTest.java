@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.paolo.springboot.exception.ParentNotFoundException;
+import org.paolo.springboot.exception.NotFoundException;
 import org.paolo.springboot.persistence.model.Parent;
 import org.paolo.springboot.persistence.repository.ParentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,13 +64,13 @@ public class ParentsControllerTest {
     }
 
     @Test
-    public void whenRead_thenReturnParentNotFound() throws Exception {
+    public void whenRead_thenReturnNotFound() throws Exception {
 
-        when(mParentsRepository.findById(1L)).thenThrow(new ParentNotFoundException());
+        when(mParentsRepository.findById(1L)).thenThrow(new NotFoundException());
 
         mMockMvc.perform(get("/parents/1"))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string("Parent not found"));
+                .andExpect(content().string("Not found"));
 
     }
 
@@ -89,13 +89,13 @@ public class ParentsControllerTest {
     }
 
     @Test
-    public void whenDelete_thenReturnParentNotFound() throws Exception {
+    public void whenDelete_thenReturnNotFound() throws Exception {
 
-        when(mParentsRepository.findById(1L)).thenThrow(new ParentNotFoundException());
+        when(mParentsRepository.findById(1L)).thenThrow(new NotFoundException());
 
         mMockMvc.perform(delete("/parents/1"))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string("Parent not found"));
+                .andExpect(content().string("Not found"));
 
     }
 
@@ -118,20 +118,20 @@ public class ParentsControllerTest {
     }
 
     @Test
-    public void whenPut_thenReturnParentNotFound() throws Exception {
+    public void whenPut_thenReturnNotFound() throws Exception {
 
         final Parent parent = new Parent("Mrs", "Jane", "Doe", "jane.doe@gohenry.co.uk",
                 DateTimeFormat.forPattern("yyyy-MM-dddd").parseDateTime("1990-06-03").toDate(), "female");
 
         parent.setId(1L);
-        when(mParentsRepository.findById(1L)).thenThrow(new ParentNotFoundException());
+        when(mParentsRepository.findById(1L)).thenThrow(new NotFoundException());
 
         ObjectMapper mapper = new ObjectMapper();
 
         mMockMvc.perform(put("/parents/1")
                 .contentType(MediaType.APPLICATION_JSON).content(mapper.writer().writeValueAsString(parent)))
                 .andExpect(status().isNotFound())
-                .andExpect(content().string("Parent not found"));
+                .andExpect(content().string("Not found"));
 
     }
 

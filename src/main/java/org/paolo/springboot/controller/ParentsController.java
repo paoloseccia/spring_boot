@@ -1,7 +1,7 @@
 package org.paolo.springboot.controller;
 
-import org.paolo.springboot.exception.ParentIdMismatchException;
-import org.paolo.springboot.exception.ParentNotFoundException;
+import org.paolo.springboot.exception.IDMismatchException;
+import org.paolo.springboot.exception.NotFoundException;
 import org.paolo.springboot.persistence.model.Parent;
 import org.paolo.springboot.persistence.model.Person;
 import org.paolo.springboot.persistence.repository.ParentsRepository;
@@ -27,22 +27,22 @@ public class ParentsController {
     public Parent update(@RequestBody final Parent parent, @PathVariable("id") long id) {
 
         if(parent.getId() != id) {
-            throw new ParentIdMismatchException();
+            throw new IDMismatchException();
         }
-        mParentsRepository.findById(id).orElseThrow(ParentNotFoundException::new);
+        mParentsRepository.findById(id).orElseThrow(NotFoundException::new);
 
         return mParentsRepository.save(parent);
     }
 
     @GetMapping("/parents/{id}")
     public Person read(@PathVariable("id") long id) {
-        return mParentsRepository.findById(id).orElseThrow(ParentNotFoundException::new);
+        return mParentsRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
 
     @DeleteMapping("/parents/{id}")
     public void delete(@PathVariable("id") long id) {
-        final Parent parent = mParentsRepository.findById(id).orElseThrow(ParentNotFoundException::new);
+        final Parent parent = mParentsRepository.findById(id).orElseThrow(NotFoundException::new);
         mParentsRepository.delete(parent);
     }
 }
