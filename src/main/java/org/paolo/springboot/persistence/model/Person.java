@@ -1,25 +1,41 @@
-package org.paolo.springboot;
+package org.paolo.springboot.persistence.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-
 import java.util.Date;
 
+@MappedSuperclass
 public abstract class Person {
 
-    private final static DateTimeFormatter DATE_FORMATTER = DateTimeFormat.forPattern("yyyy-MM-dd");
+    @Id
+    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgen")
+    private long id;
 
+    @Column
     private String secondName;
 
+    @JsonProperty(required = true)
+    @Column(nullable = false)
     private final String firstName;
+
+    @JsonProperty(required = true)
+    @Column(nullable = false)
     private final String lastName;
+
+    @JsonProperty(required = true)
+    @Column(nullable = false)
     private final String emailAddress;
+
+    @JsonProperty(required = true)
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private final Date dateOfBirth;
+
+    @JsonProperty(required = true)
+    @Column(nullable = false)
     private final String gender;
 
 
@@ -32,33 +48,26 @@ public abstract class Person {
         this.gender = gender;
     }
 
-    @JsonProperty(required = true)
-    @Column(nullable = false)
+    public long getId() {
+        return id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
 
-    @JsonProperty(required = true)
-    @Column(nullable = false)
     public String getLastName() {
         return lastName;
     }
 
-    @JsonProperty(required = true)
-    @Column(nullable = false)
     public String getEmailAddress() {
         return emailAddress;
     }
 
-    @JsonProperty(required = true)
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    public String getDateOfBirth() {
-        return DATE_FORMATTER.print(dateOfBirth.getTime());
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    @JsonProperty(required = true)
-    @Column(nullable = false)
     public String getGender() {
         return gender;
     }

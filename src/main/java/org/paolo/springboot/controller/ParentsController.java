@@ -1,5 +1,7 @@
-package org.paolo.springboot;
+package org.paolo.springboot.controller;
 
+import org.paolo.springboot.persistence.model.Parent;
+import org.paolo.springboot.persistence.model.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

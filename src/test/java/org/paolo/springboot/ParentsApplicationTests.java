@@ -3,6 +3,8 @@ package org.paolo.springboot;
 import org.joda.time.format.DateTimeFormat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.paolo.springboot.controller.ParentsController;
+import org.paolo.springboot.persistence.model.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

@@ -1,4 +1,4 @@
-package org.paolo.springboot;
+package org.paolo.springboot.persistence.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,14 +10,15 @@ import java.util.List;
 
 
 @Entity
+@SequenceGenerator(name = "idgen", sequenceName = "parentseq")
 public class Parent extends Person {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
-
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonProperty
     private final List<Children> children;
+
+    @JsonProperty(required = true)
+    @Column(nullable = false)
     private final String title;
 
 
@@ -31,26 +32,22 @@ public class Parent extends Person {
     }
 
 
-    @JsonProperty(required = true, value = "title")
-    @Column(nullable = false)
     public String getTitle() {
         return title;
     }
 
-    public long id() {
-        return id;
+    public List<Children> getChildren() {
+        return children;
     }
 
-    @OneToMany(cascade = CascadeType.REMOVE, targetEntity = Children.class)
-    @JsonProperty
-    public List<Children> children() {
-        return children;
+    public void addChildren(final Children children) {
+        this.children.add(children);
     }
 
     @Override
     public String toString() {
         return "Parent{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", title='" + title + '\'' +
                 ", secondName='" + getSecondName() + '\'' +
                 ", firstName='" + getFirstName() + '\'' +
