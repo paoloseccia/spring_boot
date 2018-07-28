@@ -19,25 +19,26 @@ public abstract class Person {
 
     @JsonProperty(required = true)
     @Column(nullable = false)
-    private final String firstName;
+    private String firstName;
 
     @JsonProperty(required = true)
     @Column(nullable = false)
-    private final String lastName;
+    private String lastName;
 
     @JsonProperty(required = true)
     @Column(nullable = false)
-    private final String emailAddress;
+    private String emailAddress;
 
     @JsonProperty(required = true)
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
-    private final Date dateOfBirth;
+    private Date dateOfBirth;
 
     @JsonProperty(required = true)
     @Column(nullable = false)
-    private final String gender;
+    private String gender;
 
+    public Person() { }
 
     public Person(String firstName, String lastName, String emailAddress,
                   Date dateOfBirth, String gender) {
@@ -78,5 +79,29 @@ public abstract class Person {
 
     public void setSecondName(String secondName) {
         this.secondName = secondName;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

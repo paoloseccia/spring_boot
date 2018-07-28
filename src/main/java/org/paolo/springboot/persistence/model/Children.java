@@ -13,9 +13,8 @@ public class Children extends Person {
     @ManyToOne(fetch = LAZY)
     private Parent parent;
 
-    /**
-     * Unique constructor allowed
-     */
+    public Children() { }
+
     public Children(String firstName, String lastName, String emailAddress, Date dateOfBirth, String gender) {
         super(firstName, lastName, emailAddress, dateOfBirth, gender);
     }

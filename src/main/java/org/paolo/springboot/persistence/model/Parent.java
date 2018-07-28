@@ -15,20 +15,18 @@ public class Parent extends Person {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonProperty
-    private final List<Children> children;
+    private final List<Children> children = new ArrayList<>();
 
     @JsonProperty(required = true)
     @Column(nullable = false)
-    private final String title;
+    private String title;
+
+    public Parent() { }
 
 
-    /**
-     * Unique constructor allowed
-     */
     public Parent(String title, String firstName, String lastName, String emailAddress, Date dateOfBirth, String gender) {
         super(firstName, lastName, emailAddress, dateOfBirth, gender);
         this.title = title;
-        this.children = new ArrayList<>();
     }
 
 
@@ -42,6 +40,10 @@ public class Parent extends Person {
 
     public void addChildren(final Children children) {
         this.children.add(children);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override

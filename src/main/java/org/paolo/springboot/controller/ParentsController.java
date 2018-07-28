@@ -2,38 +2,28 @@ package org.paolo.springboot.controller;
 
 import org.paolo.springboot.persistence.model.Parent;
 import org.paolo.springboot.persistence.model.Person;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.paolo.springboot.persistence.repository.ParentsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 
-@Controller
+@RestController
 public class ParentsController {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(ParentsController.class);
+    @Autowired
+    private ParentsRepository mParentsRepository;
 
-
-    @RequestMapping(method = RequestMethod.POST, value = "/parents")
-    @ResponseBody
-    public Person create(final Parent parent) {
-
-        LOGGER.info("Saving parent  {}", parent);
-
-        return null;
+    @PostMapping("/parents")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Person create(@RequestBody final Parent parent) {
+        return mParentsRepository.save(parent);
     }
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/parents/{id}")
-    @ResponseBody
+    @GetMapping("/parents/{id}")
     public Person read(@PathVariable("id") long id) {
-
-        LOGGER.info("Reading parent with id {}", id);
-
-        return null;
+        return mParentsRepository.getOne(id);
     }
 
 }
