@@ -1,20 +1,20 @@
 # Spring Boot Application
 
-List of API exposed for parents CRUD operation
+List of API exposed for parents
 
 
 ```sh
-$ POST /parents - creates a new parent
-$ GET /parents/{id} - gets parent by id
-$ PUT /parents/{id} - updates an existing parent by id
-$ DELETE /parents/{id} - removes an existing parent by id
+ POST /parents - creates a new parent
+ GET /parents/{id} - gets parent by id
+ PUT /parents/{id} - updates an existing parent by id
+ DELETE /parents/{id} - removes an existing parent by id
 ```
 
-List of API exposed for parents CRUD operation
+List of API exposed for children
 
 
 ```sh
-$ PUT /children/{id} - updates an existing children by id
+ PUT /children/{id} - updates an existing children by id
 ```
 
 ### TEST
